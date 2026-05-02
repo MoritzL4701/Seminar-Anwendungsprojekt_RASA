@@ -1,0 +1,187 @@
+version: '3.1'
+intents:
+- ask_eduroam_setup
+- ask_troubleshooting
+- choose_mac
+- choose_windows
+- confirm_next
+- greet
+entities:
+- os
+slots:
+  os:
+    type: categorical
+    influence_conversation: true
+    values:
+    - windows
+    - mac
+    mappings:
+    - type: from_entity
+      entity: os
+responses:
+  utter_greet:
+  - text: Hallo! Wie kann ich dir helfen?
+  utter_ask_os:
+  - text: Welches Betriebssystem nutzt du – Windows oder Mac?
+  utter_win_step1:
+  - text: |
+      Windows – Schritt 1 von 8
+
+      Öffne https://cat.eduroam.org und klicke auf den großen blauen Installer-Button.
+
+      Sag „weiter", wenn du bereit bist.
+  utter_win_step2:
+  - text: |
+      Schritt 2 von 8
+
+      Wähle „Universität Hohenheim" aus der Liste aus.
+      Falls sie nicht erscheint: Gib „hoh" ins Suchfeld ein und wähle sie dann aus.
+
+      Weiter?
+  utter_win_step3:
+  - text: |
+      Schritt 3 von 8
+
+      Klicke auf den Button „eduroam®" unter „MS Windows 8 und neuer".
+      Die .exe-Datei wird heruntergeladen.
+
+      Weiter?
+  utter_win_step4:
+  - text: |
+      Schritt 4 von 8
+
+      Öffne die heruntergeladene Datei (oben rechts im Browser oder im Download-Ordner).
+      Klicke im Installer auf „Weiter".
+
+      Weiter?
+  utter_win_step5:
+  - text: |
+      Schritt 5 von 8
+
+      Es erscheint ein Hinweis, dass der Installer nur für die Uni Hohenheim funktioniert.
+      Klicke auf „OK".
+
+      Weiter?
+  utter_win_step6:
+  - text: |
+      Schritt 6 von 8
+
+      Wichtig: Gib deinen Benutzernamen in diesem Format ein:
+      benutzername@uni-hohenheim.de
+
+      (Nicht deine E-Mail-Adresse verwenden!)
+      Passwort = dein normales Uni-Passwort (wie für ILIAS, VPN, Webmail).
+
+      Klicke dann auf „Installieren".
+
+      Weiter?
+  utter_win_step7:
+  - text: |
+      Schritt 7 von 8
+
+      Es erscheint eine Sicherheitswarnung zum T-TeleSec-Zertifikat.
+      Klicke auf „Ja", um es zu installieren.
+
+      Weiter?
+  utter_win_done:
+  - text: |
+      Schritt 8 von 8 – Fertig!
+
+      Klicke auf „Fertigstellen".
+      Du solltest dich jetzt mit dem WLAN „eduroam" verbinden können!
+  utter_mac_step1:
+  - text: |
+      macOS – Schritt 1 von 9
+
+      Bitte aktualisiere deinen Mac vorher!
+      Gehe auf https://cat.eduroam.org und klicke auf den Installer-Button.
+
+      Sag „weiter".
+  utter_mac_step2:
+  - text: |
+      Schritt 2 von 9
+
+      Klicke unten auf den Button für den macOS-Installer.
+
+      Weiter?
+  utter_mac_step3:
+  - text: |
+      Schritt 3 von 9
+
+      Wähle die heruntergeladene Datei in deinem Browser aus.
+      Alternative: Doppelklick im Finder unter „Downloads".
+
+      Weiter?
+  utter_mac_step4:
+  - text: |
+      Schritt 4 von 9
+
+      Ein Dialog erscheint. Klicke auf „OK" oder warte ca. 20 Sekunden.
+
+      Weiter?
+  utter_mac_step5:
+  - text: |
+      Schritt 5 von 9
+
+      Öffne die macOS-Einstellungen → „Profile"
+      (unter „Allgemein" → „Geräteverwaltung").
+
+      Weiter?
+  utter_mac_step6:
+  - text: |
+      Schritt 6 von 9
+
+      Doppelklicke auf das „eduroam"-Profil.
+
+      Weiter?
+  utter_mac_step7:
+  - text: |
+      Schritt 7 von 9
+
+      Klicke auf „Installieren…", dann „Fortfahren".
+
+      Gib deinen Benutzernamen ein: benutzername@uni-hohenheim.de
+      (Nicht deine E-Mail-Adresse!)
+      Passwort = dein Uni-Passwort.
+
+      Klicke „Installieren", dann nochmal „Installieren".
+
+      Weiter?
+  utter_mac_step8:
+  - text: |
+      Schritt 8 von 9
+
+      Gib dein Mac-Systempasswort ein und klicke „OK".
+
+      Falls „WLAN ist deaktiviert" erscheint: WLAN aktivieren und erneut „Installieren".
+
+      Weiter?
+  utter_mac_done:
+  - text: |
+      Schritt 9 von 9 – Fertig!
+
+      Dein Mac verbindet sich ab jetzt automatisch mit eduroam,
+      sobald es in Reichweite ist!
+  utter_troubleshooting:
+  - text: |
+      Verbindungsprobleme?
+
+      1. Neustart versuchen
+      2. Betriebssystem-Updates durchführen (inkl. Treiber)
+      3. IT-Helpdesk kontaktieren:
+         Biogebäude 1, Garbenstraße 30, 1. UG
+         kim-it@uni-hohenheim.de
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: false
+actions:
+- utter_win_step5
+- utter_win_step1
+- utter_greet
+- utter_win_step3
+- utter_win_step2
+- utter_win_step7
+- utter_ask_os
+- utter_win_step6
+- utter_win_step4
+- utter_win_done
